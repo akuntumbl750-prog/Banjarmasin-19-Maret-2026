@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Cia</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #ffd6e7, #ffffff);
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.active {
+    display: flex;
+}
+
+.card {
+    background: rgba(255,255,255,0.6);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 700px;
+    backdrop-filter: blur(10px);
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-line;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #e599f7;
+    color: white;
+    cursor: pointer;
+}
+
+/* bunga */
+.flower {
+    position: absolute;
+    color: #d0a2f7;
+    font-size: 24px;
+    animation: float 10s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- musik -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b6c7f4c4.mp3">
+</audio>
+
+<!-- bunga -->
+<div class="flower" style="left:10%;">🌸</div>
+<div class="flower" style="left:30%; animation-delay:2s;">🌸</div>
+<div class="flower" style="left:50%; animation-delay:4s;">🌸</div>
+<div class="flower" style="left:70%; animation-delay:6s;">🌸</div>
+<div class="flower" style="left:90%; animation-delay:8s;">🌸</div>
+
+<!-- SLIDES -->
+<div class="slide active"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p><button onclick="nextSlide()">Lanjut</button></div></div>
+<div class="slide"><div class="card"><p class="text"></p></div></div>
+
+<script>
+const audio = document.getElementById("bgm");
+
+const messages = [
+`Halo Cia, apa kabar? udah siap belum?
+Siapkan diri, bersihkan hati, ikhlas ya?`,
+
+`Haloooooo, aku gatau nama lengkap atau nama asli kamu, yang aku tau cuman Kia, atau nama dari aku, Cia. Aku awalnya mau nanya ke kamu masalah itu, karena kamu udah tau duluan nama lengkap aku, bahkan waktu aku mati-matian nutupin, namun ujung ujungnnya kebongkar gara gara novel aku sendiri... Aku pengen tau nama kamu, hanya sebatas itu, namun... Mengingat sikap kamu belakangan ini, aku rasa itu ga bakal kesampaian, ya? ada jarak lagi, diantara kita.`,
+
+`Kamu tau? aku udah pernah bilang kan, aku orangnya overthinking banget... sikap kamu tu bikin aku beberapa hari gabisa tidur, sometimes aku tiba-tiba nangis karna ituu juga... "Aku kurang apa...?" begitulah pikirku. Aku cengeng ya? iyaa aku tau kok :( semenjak kamu suka main di Neighbors, kita udah gapernah mabar intens lagi... even sometimes pesan akupun kamu abaikan, seseru itu ya disana? iyaaa tauuu aku ngeboseninnn makanya kamu lebih milih disana... disana kamu ketemu banyak orang baru, yang ngetreat kamu dengan cara mereka sendiri, ga kaya aku yang gitu gitu aja hihi.`,
+
+`Aku tau, dunia kamu bukan cuman aku, tapi... waktu itu, dunia aku cuman ada kamu. Aku ga kenal siapa siapa lagi yang bisa diajak main, makanya aku ke kamu... maaf ya, udah ngerepotin selama beberapa bulan terakhir? ahh, aku terlalu banyak minta maaf, ya? karena, aku takut. itu jawaban aku. Pengalaman buruk aku di masa lalu, bikin aku selalu takut, akan sebuah perpisahan jadi aku selalu minta maaf, even untuk hal-hal yang emang bukan salah aku:)`,
+
+`Makasih ya Cia atas segalanya!! Waktu kamu, cerita-cerita hidup kamu yang penuh warna, jujur ikut mewarnai hidup aku yang "Abu-abu" ini... aku sengebosenin itu, yaa? gapapa kooo, aku tau dan paham, kamu gasuka tipe orang yang gitu gitu aja... Kamu tau? suara kamu yang kamu anggep biasa-biasa aja itu, justru sangat berarti buat aku. Suara itu, nenangin pikiran aku, selalu nenangin marahnya aku. Kamu, lebih berarti dari yang pernah kamu kira, setidaknya bagi aku.`,
+
+`Setiap masa, ada orangnya. Setiap orang, ada masanya. Mungkin, yang pernah kamu dengar itu "People come and go", kan? nah, ini versi bahasa indonesianya. Aku sayang kamu. Aku dengerin apa ucapan kamu, teguran kamu. Kamu bener, awalnya aku emang ngeliat cewe sebagai objek, but kamu ngeubah jalan pikiran aku waktu kamu negur aku, i really appreciate it!!`,
+
+`Setiap pertemuan, akan selalu ada perpisahan, kan? Yah... aku rasa, itu juga berlaku bagi kita. Salahin aku, kenapa dari awal sudah bawa perasaan. Aku terlalu ngarepin kamu, aku udah ada niatan serius sama kamu. Kata aku dulu yang mau ke solo, itu sebenarnya beneran loh fun factnya... aku mau ngasih surprise nanti semisal kamu lagi wisudaan, sayangnya... ga sampai kesitu ya? maaf, Aku... kalah duluan sama mental dan pikiran aku yang udah ga kuat... aku ga bisa bertahan lebih jauh.`,
+
+`Jangan tinggalin shalat, usahain shalat dulu baru main atau nugas. Jaga pola makan kamu yang berantakan itu, kocak emang... Semangat kuliah dan ormawanya, wahai koor :P. however, jangan ngerasa bersalah, yah? ini semua dari awal salah aku ko hihi, aku yang over ngarepin kamu karna kamu datang disaat semuanya ngejauhin aku... kamu ngasih aku harapan, waktu luang, dan keceriaan. after all, aku akan selalu mengucapkan ribuan rasa terima kasih dan permintaan maaf, kalau ada kata atau ketikan aku yang pernah buat kamu tersinggung. Selamat menunaikan hari raya idul fitri.
+
+Juga... 
+SELAMAT ULANG TAHUN YANG KE 20 MY FAV PERSON!!! HOPE YOUR DAY ARE ALWAYS BEING GENTLE TO YOU, SWEETIE❤️`
+];
+
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+
+function typeText(el, text, i = 0){
+    if(i < text.length){
+        el.innerHTML += text.charAt(i);
+        setTimeout(() => typeText(el, text, i+1), 20);
+    }
+}
+
+function showSlide(i){
+    const el = slides[i].querySelector(".text");
+    el.innerHTML = "";
+    typeText(el, messages[i]);
+}
+
+function nextSlide(){
+    // 🔊 mulai musik saat pertama klik
+    if (current === 0) {
+    audio.play().catch(() => {});
+    }
+
+    slides[current].classList.remove("active");
+    current++;
+    if(current < slides.length){
+        slides[current].classList.add("active");
+        showSlide(current);
+    }
+}
+
+showSlide(0);
+</script>
+
+</body>
+</html>
